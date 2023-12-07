@@ -1,0 +1,15 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find mrm_description)/urdf/mrm.xacro'"/>
+  
+  <!-- Combine joint values -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  
+  <!-- Show in Rviz   -->  <!--args="-d $(find mrm_description)/launch/config.rviz" -->
+  <node name="rviz" pkg="rviz" type="rviz"/>
+  
+  <!-- send joint values -->
+  <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">
+    <param name="use_gui" value="true"/>
+  </node>
+
+</launch>
