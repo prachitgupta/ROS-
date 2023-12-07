@@ -1,0 +1,17 @@
+<launch>
+<include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find epi1)/src/worlds/trial.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+    <arg name="verbose" value="true" />
+</include>
+  <!-- This command builds the urdf files from the xacro files by calling the launch file -->
+  <param name="robot_car_description" command="$(find xacro)/xacro --inorder '$(find epi1)/src/models/robot_car/robot_car.xacro'"/>
+  
+  <!-- Spawn the robot after we built the urdf files -->
+  <node name="robot_car_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
+   args="-urdf -param robot_car_description -model robot_car" />
+</launch>

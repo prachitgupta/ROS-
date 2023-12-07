@@ -1,0 +1,4 @@
+<launch>
+<!-- Format of args = "-d $(find package-name)/relative path"-->
+<node name="custom_rviz" pkg="rviz" type="rviz" args="-d $(find epi1)/src/configs/custom.rviz"/>
+</launch>
